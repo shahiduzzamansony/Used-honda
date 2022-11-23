@@ -8,17 +8,17 @@ const Categories = () => {
   const categories = [
     {
       id: 1,
-      name: "Cruiser",
+      category: "Cruiser",
       image: cruiser,
     },
     {
       id: 2,
-      name: "Sport",
+      category: "Sport",
       image: sport,
     },
     {
       id: 3,
-      name: "Scooter",
+      category: "Scooter",
       image: scooter,
     },
   ];

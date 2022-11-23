@@ -1,8 +1,56 @@
 [
     {
-        "id":1,
         "category":"Cruiser",
-        "img":"https://i.ibb.co/0yYm5zz/cruiser.jpg"
+        "name":"Indian-Scout-Bobber",
+        "img":"https://cdn.luxatic.com/wp-content/uploads/2021/11/Indian-Scout-Bobber-Sixty.jpg",
+        "location":"Matijheel, Dhaka",
+        "originalPrice":400000,
+        "resalePrice":320000
+        
+    },
+    {
+        "category":"Cruiser",
+        "name":"Hyosung-Bobber",
+        "img":"https://cdn.visordown.com/styles/v2_large/s3/field/image/Hyosung-Bobber-300-202002%20%281%29.jpg?itok=jFknHAyc",
+        "location":"Chittagong",
+        "originalPrice":370000,
+        "resalePrice":300000
+        
+    },
+    {
+        "category":"Sport",
+        "name":"Honda-CBR",
+        "img":"https://wallpaperaccess.com/full/3132713.jpg",
+        "location":"Bogura",
+        "originalPrice":450000,
+        "resalePrice":380000
+        
+    },
+    {
+        "category":"Sport",
+        "name":"Suzuki-GSXR",
+        "img":"https://www.tbsnews.net/sites/default/files/styles/big_2/public/images/2022/09/21/lead_1._suzuki_gsx_2_2.jpg",
+        "location":"Bogura",
+        "originalPrice":400000,
+        "resalePrice":330000
+        
+    }, 
+    {
+        "category":"Scooter",
+        "name":"Bajaj",
+        "img":"https://imgd.aeplcdn.com/370x208/bw/models/bajaj-urbanite-chetak-standard20191016163349.jpg?q=75",
+        "location":"Dhanmondi, Dhaka",
+        "originalPrice":160000,
+        "resalePrice":100000
+        
+    },
+    {
+        "category":"Scooter",
+        "name":"Yamaha",
+        "img":"https://thepack.news/wp-content/uploads/2022/03/e01_color_001_2022_004_blog.jpg",
+        "location":"Dhanmondi, Dhaka",
+        "originalPrice":160000,
+        "resalePrice":100000
         
     }
 ]
