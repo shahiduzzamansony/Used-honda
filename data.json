@@ -1,53 +1,53 @@
 [
     {
-        "category":"Cruiser",
+        "type":"Cruiser",
         "name":"Indian-Scout-Bobber",
-        "img":"https://cdn.luxatic.com/wp-content/uploads/2021/11/Indian-Scout-Bobber-Sixty.jpg",
+        "img":"https://i.ibb.co/5LRXwR6/Indian-Scout-Bobber-Sixty.jpg",
         "location":"Matijheel, Dhaka",
         "originalPrice":400000,
         "resalePrice":320000
         
     },
     {
-        "category":"Cruiser",
+        "type":"Cruiser",
         "name":"Hyosung-Bobber",
-        "img":"https://cdn.visordown.com/styles/v2_large/s3/field/image/Hyosung-Bobber-300-202002%20%281%29.jpg?itok=jFknHAyc",
+        "img":"https://i.ibb.co/6Ps1DXR/Hyosung-Bobber-300-202002-1.jpg",
         "location":"Chittagong",
         "originalPrice":370000,
         "resalePrice":300000
         
     },
     {
-        "category":"Sport",
+        "type":"Sport",
         "name":"Honda-CBR",
-        "img":"https://wallpaperaccess.com/full/3132713.jpg",
+        "img":"https://i.ibb.co/fFqSgcQ/3132713.jpg",
         "location":"Bogura",
         "originalPrice":450000,
         "resalePrice":380000
         
     },
     {
-        "category":"Sport",
+        "type":"Sport",
         "name":"Suzuki-GSXR",
-        "img":"https://www.tbsnews.net/sites/default/files/styles/big_2/public/images/2022/09/21/lead_1._suzuki_gsx_2_2.jpg",
+        "img":"https://i.ibb.co/txQBcyy/lead-1-suzuki-gsx-2-2.jpg",
         "location":"Bogura",
         "originalPrice":400000,
         "resalePrice":330000
         
     }, 
     {
-        "category":"Scooter",
+        "type":"Scooter",
         "name":"Bajaj",
-        "img":"https://imgd.aeplcdn.com/370x208/bw/models/bajaj-urbanite-chetak-standard20191016163349.jpg?q=75",
+        "img":"https://i.ibb.co/3rSRb9r/bajaj-urbanite-chetak-standard20191016163349.jpg",
         "location":"Dhanmondi, Dhaka",
         "originalPrice":160000,
         "resalePrice":100000
         
     },
     {
-        "category":"Scooter",
+        "type":"Scooter",
         "name":"Yamaha",
-        "img":"https://thepack.news/wp-content/uploads/2022/03/e01_color_001_2022_004_blog.jpg",
+        "img":"https://i.ibb.co/z4qXKXt/e01-color-001-2022-004-blog.jpg",
         "location":"Dhanmondi, Dhaka",
         "originalPrice":160000,
         "resalePrice":100000
