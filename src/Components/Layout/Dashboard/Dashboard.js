@@ -5,15 +5,15 @@ import { useQuery } from "@tanstack/react-query";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
-  useEffect(() => {
-    users.map((u) => setUser(u));
-  }, []);
   const { data: users = [] } = useQuery({
     queryKey: ["usersData"],
     queryFn: () =>
       fetch("http://localhost:5000/users").then((res) => res.json()),
   });
-  console.log(users);
+  // console.log(users);
+  useEffect(() => {
+    users.map((u) => setUser(u));
+  }, [users]);
   return (
     <div>
       {/* {users?.map((u) => setUser(u))} */}
@@ -40,10 +40,10 @@ const Dashboard = () => {
             {user?.role === "Buyer" && (
               <>
                 <li>
-                  <Link>My Products</Link>
+                  <Link to="/dashboard/myProducts">My Products</Link>
                 </li>
                 <li>
-                  <Link>Add a Product</Link>
+                  <Link to="/dashboard/addProduct">Add a Product</Link>
                 </li>
               </>
             )}

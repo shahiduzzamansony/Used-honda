@@ -5,6 +5,8 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import Main from "../Layout/Main/Main";
 import DashboardHome from "../Pages/DashboardHome/DashboardHome";
 import Home from "../Pages/Home/Home";
+import AddProduct from "../Pages/Products/AddProduct";
+import MyProducts from "../Pages/Products/MyProducts";
 import Products from "../Pages/Products/Products";
 
 const router = createBrowserRouter([
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardHome></DashboardHome>,
+      },
+      {
+        path: "/dashboard/addProduct",
+        element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/myProducts",
+        element: <MyProducts></MyProducts>,
       },
     ],
   },

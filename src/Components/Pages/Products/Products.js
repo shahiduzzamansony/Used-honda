@@ -7,15 +7,19 @@ import ProductCard from "./ProductCard";
 const Products = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [modalProduct, setModalProduct] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const { type } = useParams();
   const navigate = useNavigate;
+
   useEffect(() => {
     fetch(`http://localhost:5000/products?type=${type}`)
       .then((res) => res.json())
       .then((data) => setFilterProducts(data))
       .catch((err) => console.error(err));
   }, [type]);
+  if (loading) {
+    return <>Loading...</>;
+  }
   return (
     <div>
       <div className=" m-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
@@ -28,7 +32,14 @@ const Products = () => {
         ))}
       </div>
       {user ? (
-        <>{modalProduct && <Modal modalProduct={modalProduct}></Modal>}</>
+        <>
+          {modalProduct && (
+            <Modal
+              modalProduct={modalProduct}
+              setModalProduct={setModalProduct}
+            ></Modal>
+          )}
+        </>
       ) : (
         navigate("/")
       )}
