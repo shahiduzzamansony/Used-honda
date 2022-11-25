@@ -30,17 +30,19 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            {user?.role === "Seller" && (
+            {user?.role === "Buyer" && (
               <>
                 <li>
                   <Link>My Orders</Link>
                 </li>
               </>
             )}
-            {user?.role === "Buyer" && (
+            {user?.role === "Seller" && (
               <>
                 <li>
-                  <Link to="/dashboard/myProducts">My Products</Link>
+                  <Link to={`/dashboard/myProducts/${user?.email}`}>
+                    My Products
+                  </Link>
                 </li>
                 <li>
                   <Link to="/dashboard/addProduct">Add a Product</Link>

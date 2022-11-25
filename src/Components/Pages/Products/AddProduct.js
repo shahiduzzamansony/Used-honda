@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
   const addProduct = (event) => {
     event.preventDefault();
     const form = event.target;
+    const email = form.email.value;
     const type = form.type.value;
     const name = form.name.value;
     const img = form.img.value;
@@ -11,6 +14,7 @@ const AddProduct = () => {
     const originalPrice = form.originalPrice.value;
     const resalePrice = form.resalePrice.value;
     const createdProduct = {
+      email,
       type,
       name,
       img,
@@ -34,6 +38,13 @@ const AddProduct = () => {
     <div>
       <form onSubmit={addProduct}>
         <div className="flex flex-col justify-center items-center my-14">
+          <input
+            className="input w-1/2 input-bordered input-accent input-sm mb-3"
+            defaultValue={user.email}
+            name="email"
+            required
+            disabled
+          />
           <input
             className="input w-1/2 input-bordered input-accent input-sm mb-3"
             placeholder="Item Type"
