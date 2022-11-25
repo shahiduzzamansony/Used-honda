@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
   const { createUser, loading, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   if (loading) {
     return (
       <button type="button" className="bg-indigo-500 ..." disabled>
@@ -47,7 +48,8 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("saved used", data);
+        // console.log("saved used", data);
+        navigate("/");
       });
   };
   return (

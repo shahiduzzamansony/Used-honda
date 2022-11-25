@@ -41,22 +41,24 @@ const Modal = ({ modalProduct }) => {
                 disabled
               />
               <input
-                {...register("firstName")}
+                {...register("meetingLocation")}
                 className="input w-3/4 input-bordered input-accent input-sm mb-3"
-                placeholder="First name"
+                placeholder="Meeting Location"
               />
               <input
-                {...register("firstName")}
+                {...register("phoneNumber")}
                 className="input w-3/4 input-bordered input-accent input-sm mb-3"
-                placeholder="First name"
+                placeholder="Phone Number"
               />
             </div>
-
-            <input type="submit" />
           </form>
           <div className="modal-action">
-            <label htmlFor="booknow-modal" className="btn">
-              Yay!
+            <label
+              type="submit"
+              htmlFor="booknow-modal"
+              className="btn btn-sm btn-accent"
+            >
+              Submit
             </label>
           </div>
         </div>
