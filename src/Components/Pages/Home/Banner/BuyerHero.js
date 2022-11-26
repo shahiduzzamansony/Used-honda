@@ -20,7 +20,7 @@ const BuyerHero = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <Link>
+            <Link to="/categories">
               <button className="btn btn-accent btn-sm">Search Here</button>
             </Link>
           </div>

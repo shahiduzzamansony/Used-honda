@@ -4,6 +4,7 @@ import Signup from "../AuthenticationPages/Signup";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Main from "../Layout/Main/Main";
 import DashboardHome from "../Pages/DashboardHome/DashboardHome";
+import Categories from "../Pages/Home/Categories/Categories";
 import Home from "../Pages/Home/Home";
 import AddProduct from "../Pages/Products/AddProduct";
 import MyProducts from "../Pages/Products/MyProducts";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup></Signup>,
+      },
+      {
+        path: "/categories",
+        element: <Categories></Categories>,
       },
     ],
   },

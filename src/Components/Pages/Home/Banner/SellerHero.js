@@ -17,7 +17,7 @@ const SellerHero = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <Link>
+            <Link to="/dashboard/addProduct">
               <button className="btn btn-accent btn-sm">Add Product</button>
             </Link>
           </div>
