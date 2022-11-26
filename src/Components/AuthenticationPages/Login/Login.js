@@ -25,7 +25,7 @@ const Login = () => {
     console.log(data);
     emailSignin(data.email, data.password)
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         navigate("/");
       })
       .catch((err) => console.error(err));

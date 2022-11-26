@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../../Shared/Navbar/Navbar";
-import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useRole from "../../Hooks/useRole";
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
-  const { data: users = [] } = useQuery({
-    queryKey: ["usersData"],
-    queryFn: () =>
-      fetch("http://localhost:5000/users").then((res) => res.json()),
-  });
-  // console.log(users);
-  useEffect(() => {
-    users.map((u) => setUser(u));
-  }, [users]);
+  const { user } = useContext(AuthContext);
+  const [isSeller, isBuyer] = useRole(user?.email);
+  console.log(isSeller, isBuyer);
+
   return (
     <div>
-      {/* {users?.map((u) => setUser(u))} */}
       <Navbar></Navbar>
       <div className="drawer drawer-mobile">
         <input
@@ -30,14 +24,12 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-            {user?.role === "Buyer" && (
-              <>
-                <li>
-                  <Link>My Orders</Link>
-                </li>
-              </>
+            {isBuyer && (
+              <li>
+                <Link>My Orders</Link>
+              </li>
             )}
-            {user?.role === "Seller" && (
+            {isSeller && (
               <>
                 <li>
                   <Link to={`/dashboard/myProducts/${user?.email}`}>

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Modal = ({ modalProduct, setModalProduct }) => {
@@ -12,7 +13,7 @@ const Modal = ({ modalProduct, setModalProduct }) => {
     const resalePrice = form.resalePrice.value;
     const buyerName = form.buyerName.value;
     // console.log(meetingLocation, phoneNumber, resalePrice);
-    setModalProduct(null);
+
     const bookedProduct = {
       buyerName,
       email: user.email,
@@ -29,7 +30,14 @@ const Modal = ({ modalProduct, setModalProduct }) => {
       body: JSON.stringify(bookedProduct),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        if (data.acknowledged) {
+          setModalProduct(null);
+          toast.success("Booked succesfully");
+        } else {
+          toast.error(data.message);
+        }
+      });
   };
   return (
     <div>
@@ -39,6 +47,12 @@ const Modal = ({ modalProduct, setModalProduct }) => {
           <h3 className="font-bold text-lg">{name}</h3>
           <form onSubmit={handleBooking}>
             <div className="flex flex-col justify-center items-center my-4">
+              <label
+                htmlFor="booknow-modal"
+                className="btn btn-sm btn-circle absolute right-2 top-2"
+              >
+                ✕
+              </label>
               <input
                 className="input w-3/4 input-bordered input-accent input-sm mb-3"
                 value={user.displayName}

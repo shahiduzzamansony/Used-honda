@@ -20,11 +20,11 @@ const Signup = () => {
     );
   }
   const handleSignup = (data) => {
-    console.log(data);
+    // console.log(data);
     const { name, email, role, password } = data;
     createUser(email, password)
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         const userInfo = {
           displayName: name,
         };
@@ -75,7 +75,7 @@ const Signup = () => {
               {...register("role", { required: true })}
             >
               <option value="Buyer">Buyer</option>
-              <option value="seller">Seller</option>
+              <option value="Seller">Seller</option>
             </select>
             <input
               className="input input-bordered input-accent w-full"

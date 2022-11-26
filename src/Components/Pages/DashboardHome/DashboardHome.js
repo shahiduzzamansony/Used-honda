@@ -1,19 +1,13 @@
-import React, { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useRole from "../../Hooks/useRole";
 import MyOrders from "../Orders/MyOrders";
 import MyProducts from "../Products/MyProducts";
 
 const DashboardHome = () => {
-  const { loading } = useContext(AuthContext);
-  const [user, setUser] = useState("");
-  const users = useLoaderData();
-  if (user?.role === "Seller") {
-    return <MyProducts></MyProducts>;
-  }
-  if (user?.role === "Buyer") {
-    return <MyOrders></MyOrders>;
-  }
+  const { loading, user } = useContext(AuthContext);
+  const [isSeller, isBuyer] = useRole(user?.email);
+
   if (loading) {
     return (
       <button type="button" className="bg-indigo-500 ..." disabled>
@@ -25,7 +19,12 @@ const DashboardHome = () => {
       </button>
     );
   }
-  return <div>{users.map((u) => setUser(u))}</div>;
+  return (
+    <div>
+      {isSeller && <MyProducts></MyProducts>}
+      {isBuyer && <MyOrders></MyOrders>}
+    </div>
+  );
 };
 
 export default DashboardHome;
