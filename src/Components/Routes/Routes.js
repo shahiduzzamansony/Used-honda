@@ -8,6 +8,7 @@ import Home from "../Pages/Home/Home";
 import AddProduct from "../Pages/Products/AddProduct";
 import MyProducts from "../Pages/Products/MyProducts";
 import Products from "../Pages/Products/Products";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",

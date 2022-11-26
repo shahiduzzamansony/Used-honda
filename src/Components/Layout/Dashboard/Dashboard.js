@@ -25,18 +25,18 @@ const Dashboard = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {isBuyer && (
-              <li>
+              <li className="text-xl font-semibold">
                 <Link>My Orders</Link>
               </li>
             )}
             {isSeller && (
               <>
-                <li>
+                <li className="text-xl font-semibold">
                   <Link to={`/dashboard/myProducts/${user?.email}`}>
                     My Products
                   </Link>
                 </li>
-                <li>
+                <li className="text-xl font-semibold">
                   <Link to="/dashboard/addProduct">Add a Product</Link>
                 </li>
               </>

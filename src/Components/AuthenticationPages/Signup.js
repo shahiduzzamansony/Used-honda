@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
@@ -49,6 +50,7 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log("saved used", data);
+        toast.success("User created succesfully");
         navigate("/");
       });
   };

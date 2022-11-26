@@ -22,7 +22,7 @@ const DashboardHome = () => {
   return (
     <div>
       {isSeller && <MyProducts></MyProducts>}
-      {isBuyer && <MyOrders></MyOrders>}
+      {isBuyer && <MyOrders email={user?.email}></MyOrders>}
     </div>
   );
 };

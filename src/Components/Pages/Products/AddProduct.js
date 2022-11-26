@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const AddProduct = () => {
@@ -31,6 +32,7 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        toast.success("Product added successfully");
         form.reset();
       });
   };

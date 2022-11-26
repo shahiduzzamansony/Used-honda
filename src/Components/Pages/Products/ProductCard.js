@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useRole from "../../Hooks/useRole";
 
 const ProductCard = ({ product, setModalProduct }) => {
+  const { user } = useContext(AuthContext);
   const { name, img, originalPrice, resalePrice, location } = product;
+  const [isSeller] = useRole(user?.email);
   return (
     <div>
       <div className="card shadow-xl">
@@ -28,6 +32,7 @@ const ProductCard = ({ product, setModalProduct }) => {
           </div>
           <div className="card-actions justify-end">
             <label
+              disabled={isSeller}
               onClick={() => setModalProduct(product)}
               htmlFor="booknow-modal"
               className="btn btn-accent btn-xs"
