@@ -30,8 +30,7 @@ const AdvertisedProductCard = ({ product }) => {
               <span className="font-bold text-red-600">{resalePrice} TK</span>
             </p>
           </div>
-          <div className="card-actions justify-between">
-            <p className="text-accent font-semibold text-lg">Status:</p>
+          <div className="card-actions justify-end">
             <label
               disabled={isSeller}
               //   onClick={() => setModalProduct(product)}

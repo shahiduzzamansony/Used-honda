@@ -3,36 +3,26 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Modal = ({ modalProduct, setModalProduct }) => {
-  const { user } = useContext(AuthContext);
-  const { name, resalePrice, img } = modalProduct;
+  const { user, loading } = useContext(AuthContext);
+  const { _id, name, resalePrice } = modalProduct;
   const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
+    const email = user?.email;
     const meetingLocation = form.meetingLocation.value;
     const phoneNumber = form.phoneNumber.value;
-    const resalePrice = form.resalePrice.value;
-    const buyerName = form.buyerName.value;
     // console.log(meetingLocation, phoneNumber, resalePrice);
 
-    const bookedProduct = {
-      buyerName,
-      email: user.email,
-      img,
-      itemName: name,
-      meetingLocation,
-      phoneNumber,
-      resalePrice,
-    };
-    fetch("http://localhost:5000/booked", {
-      method: "POST",
+    fetch(`http://localhost:5000/products/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(bookedProduct),
+      body: JSON.stringify({ email, meetingLocation, phoneNumber }),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
+        if (data.modifiedCount > 0) {
           setModalProduct(null);
           toast.success("Booked succesfully");
         } else {
@@ -40,6 +30,9 @@ const Modal = ({ modalProduct, setModalProduct }) => {
         }
       });
   };
+  if (loading) {
+    return <p>Loading</p>;
+  }
   return (
     <div>
       <input type="checkbox" id="booknow-modal" className="modal-toggle" />

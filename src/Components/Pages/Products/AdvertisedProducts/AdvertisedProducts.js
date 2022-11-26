@@ -16,10 +16,10 @@ const AdvertisedProducts = () => {
 
   return (
     <div>
-      <h2 className="text-center text-red-600 text-4xl font-semibold my-10">
+      <h2 className="text-center text-red-600 text-4xl font-semibold my-16">
         Featured Products
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-7 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {data?.map((d) => (
           <AdvertisedProductCard
             key={d._id}
