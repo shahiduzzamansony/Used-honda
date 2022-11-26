@@ -21,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:type",
-        element: <Products></Products>,
+        element: (
+          <PrivateRoute>
+            <Products></Products>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
