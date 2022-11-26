@@ -47,12 +47,14 @@ const AddProduct = () => {
             required
             disabled
           />
-          <input
+          <select
             className="input w-1/2 input-bordered input-accent input-sm mb-3"
-            placeholder="Item Type"
             name="type"
-            required
-          />
+          >
+            <option value="Cruiser">Cruiser</option>
+            <option value="Sport">Sport</option>
+            <option value="Scooter">Scooter</option>
+          </select>
           <input
             className="input w-1/2 input-bordered input-accent input-sm mb-3"
             placeholder="Name"

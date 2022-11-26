@@ -25,7 +25,7 @@ const Navbar = () => {
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
-          <li>
+          <li className="tooltip tooltip-left" data-tip={user?.displayName}>
             <Link onClick={handleLogout}>Signout</Link>
           </li>
         </>

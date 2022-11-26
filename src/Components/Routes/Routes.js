@@ -61,8 +61,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myProducts/:email",
         element: <MyProducts></MyProducts>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.email}`),
       },
     ],
   },

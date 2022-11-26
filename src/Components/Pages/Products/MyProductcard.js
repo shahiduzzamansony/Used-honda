@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyProductcard = ({ product }) => {
+const MyProductcard = ({ product, handleDelete, handleAdvertise }) => {
   const { _id, img, name, resalePrice } = product;
   return (
     <div>
@@ -13,8 +13,21 @@ const MyProductcard = ({ product }) => {
           <p className="text-white"> price: {resalePrice} TK</p>
           <p className="text-white">Status: {}</p>
           <div className="card-actions justify-between">
-            <button className="btn btn-accent btn-xs">Advertise</button>
-            <button className="btn btn-accent btn-xs">Delete</button>
+            <button
+              // disabled={product.isAdvertised}
+              onClick={() => handleAdvertise(_id)}
+              className="btn btn-accent btn-xs"
+            >
+              {product?.isAdvertised === "advertised"
+                ? "Advertised"
+                : "Advertise"}
+            </button>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn btn-accent btn-xs"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

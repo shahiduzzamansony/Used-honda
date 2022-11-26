@@ -7,7 +7,7 @@ import useRole from "../../Hooks/useRole";
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [isSeller, isBuyer] = useRole(user?.email);
-  console.log(isSeller, isBuyer);
+  // console.log(isSeller, isBuyer);
 
   return (
     <div>
