@@ -4,6 +4,7 @@ import Banner from "./Banner/Banner";
 import BuyerHero from "./Banner/BuyerHero";
 import SellerHero from "./Banner/SellerHero";
 import Categories from "./Categories/Categories";
+import Founder from "./Founder/Founder";
 
 const Home = () => {
   return (
@@ -11,10 +12,12 @@ const Home = () => {
       <Banner></Banner>
       <Categories></Categories>
       <AdvertisedProducts></AdvertisedProducts>
+
       <div className="grid grid-cols-1 md:grid-cols-2 my-14">
         <BuyerHero></BuyerHero>
         <SellerHero></SellerHero>
       </div>
+      <Founder></Founder>
     </div>
   );
 };
