@@ -4,16 +4,22 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
 
   const [fireError, SetFireError] = useState("");
   const { emailSignin, loading, googleSignin } = useContext(AuthContext);
+  const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [token] = useToken(loginUserEmail);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  if (token) {
+    navigate(from, { replace: true });
+  }
   if (loading) {
     return (
       <button type="button" className="bg-indigo-500 ..." disabled>
@@ -70,7 +76,7 @@ const Login = () => {
     emailSignin(data.email, data.password)
       .then((user) => {
         // console.log(user);
-        navigate("/");
+        setLoginUserEmail(data.email);
       })
       .catch((err) => SetFireError(err));
   };

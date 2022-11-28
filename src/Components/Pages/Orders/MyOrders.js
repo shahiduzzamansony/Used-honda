@@ -10,9 +10,11 @@ const MyOrders = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?buyerEmail=${user?.email}`).then(
-        (res) => res.json()
-      ),
+      fetch(`http://localhost:5000/products?buyerEmail=${user?.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   const handleReport = (order) => {

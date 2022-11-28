@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { GoVerified } from "react-icons/go";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const MySellers = () => {
+  const { user } = useContext(AuthContext);
   const query = "Seller";
 
   const { data: sellers = [], refetch } = useQuery({
@@ -13,14 +15,30 @@ const MySellers = () => {
         res.json()
       ),
   });
-
   const handleVerify = (id) => {
     fetch(`http://localhost:5000/users/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.modifiedCount > 0) {
+          toast.success("Verified Successfully");
+        } else {
+          toast.error("Already verified");
+        }
+        // refetch();
+      });
+  };
+
+  const handleProductVerify = (email) => {
+    fetch(`http://localhost:5000/products/verify/${email}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.upsertedCount > 0) {
           toast.success("Verified Successfully");
         } else {
           toast.error("Already verified");
@@ -68,15 +86,18 @@ const MySellers = () => {
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
                 <td>
-                  {!seller?.isVerified === "Verified" ? (
+                  {seller.isVerified === "Verified" ? (
+                    <GoVerified className="text-blue-600" />
+                  ) : (
                     <button
-                      onClick={() => handleVerify(seller._id)}
+                      onClick={() => {
+                        handleVerify(seller._id);
+                        handleProductVerify(seller.email);
+                      }}
                       className="btn btn-accent btn-sm"
                     >
                       Verify
                     </button>
-                  ) : (
-                    <GoVerified className="text-blue-600" />
                   )}
                 </td>
                 <td>

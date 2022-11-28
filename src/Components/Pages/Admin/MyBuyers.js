@@ -8,9 +8,11 @@ const MyBuyers = () => {
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?role=${query}`).then((res) =>
-        res.json()
-      ),
+      fetch(`http://localhost:5000/users?role=${query}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   //   console.log(buyers);

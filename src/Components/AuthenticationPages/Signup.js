@@ -4,12 +4,18 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import useToken from "../Hooks/useToken";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
   const [fireError, SetFireError] = useState("");
   const { createUser, loading, updateUser } = useContext(AuthContext);
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
+  if (token) {
+    navigate("/");
+  }
   if (loading) {
     return (
       <button type="button" className="bg-indigo-500 ..." disabled>
@@ -52,9 +58,10 @@ const Signup = () => {
       .then((data) => {
         // console.log("saved used", data);
         toast.success("User created succesfully");
-        navigate("/");
+        setCreatedUserEmail(email);
       });
   };
+
   return (
     <div className=" flex justify-center items-center  drop-shadow-lg">
       <div className="my-20 border rounded-md border-accent w-1/3 px-8 py-10">
