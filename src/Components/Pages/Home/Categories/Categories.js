@@ -1,27 +1,18 @@
-import React from "react";
-import cruiser from "../../../../assets/cruiser-logo.jpg";
-import sport from "../../../../assets/sport-logo.png";
-import scooter from "../../../../assets/scooter-logo.png";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
 
 const Categories = () => {
-  const categories = [
-    {
-      id: 1,
-      type: "Cruiser",
-      image: cruiser,
-    },
-    {
-      id: 2,
-      type: "Sport",
-      image: sport,
-    },
-    {
-      id: 3,
-      type: "Scooter",
-      image: scooter,
-    },
-  ];
+  const [categories, setCategories] = useState([]);
+  const fetchData = () => {
+    return axios
+      .get("http://localhost:5000/categories")
+      .then((response) => setCategories(response.data));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -36,7 +27,7 @@ const Categories = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 m-10">
         {categories.map((category) => (
-          <CategoryCard key={category.id} category={category}></CategoryCard>
+          <CategoryCard key={category._id} category={category}></CategoryCard>
         ))}
       </div>
     </div>

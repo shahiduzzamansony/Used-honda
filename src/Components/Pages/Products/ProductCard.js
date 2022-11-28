@@ -1,14 +1,14 @@
 import React from "react";
 
-import useRole from "../../Hooks/useRole";
+// import useRole from "../../Hooks/useRole";
 import { GoVerified } from "react-icons/go";
 
 const ProductCard = ({ product, setModalProduct }) => {
   const { name, img, originalPrice, resalePrice, location, isVerified } =
     product;
-  const [isAdmin, isSeller] = useRole();
+  // const [isAdmin, isSeller] = useRole();
   // console.log(product);
-  console.log(isAdmin, isSeller);
+  // console.log(isAdmin, isSeller);
   return (
     <div>
       <div className="card shadow-xl">
