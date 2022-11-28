@@ -10,11 +10,14 @@ const MyOrders = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?buyerEmail=${user?.email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/products?buyerEmail=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   const handleReport = (order) => {
@@ -22,7 +25,7 @@ const MyOrders = () => {
     const reportedProduct = { ...order, productId: order._id };
     delete reportedProduct._id;
 
-    fetch(`http://localhost:5000/reported`, {
+    fetch(`https://used-honda-buy-sell-server.vercel.app/reported`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -36,7 +39,7 @@ const MyOrders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you really want to delete?");
     if (proceed) {
-      fetch(`http://localhost:5000/products/${id}`, {
+      fetch(`https://used-honda-buy-sell-server.vercel.app/products/${id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

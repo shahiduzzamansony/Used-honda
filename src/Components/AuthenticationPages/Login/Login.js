@@ -43,7 +43,7 @@ const Login = () => {
             email: user?.email,
             role: "Buyer",
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://used-honda-buy-sell-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

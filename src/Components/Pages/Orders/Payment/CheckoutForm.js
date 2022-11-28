@@ -16,14 +16,17 @@ const CheckoutForm = ({ data }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        // authorization: `'bearer' ${process.env.REACT_APP_PK}`,
-      },
-      body: JSON.stringify({ resalePrice }),
-    })
+    fetch(
+      "https://used-honda-buy-sell-server.vercel.app/create-payment-intent",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          // authorization: `'bearer' ${process.env.REACT_APP_PK}`,
+        },
+        body: JSON.stringify({ resalePrice }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [resalePrice]);
@@ -75,7 +78,7 @@ const CheckoutForm = ({ data }) => {
         bookingId: _id,
       };
       console.log(email, payment.buyerEmail);
-      fetch("http://localhost:5000/payments", {
+      fetch("https://used-honda-buy-sell-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",

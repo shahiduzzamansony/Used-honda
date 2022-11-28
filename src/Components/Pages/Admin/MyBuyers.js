@@ -8,11 +8,14 @@ const MyBuyers = () => {
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?role=${query}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/users?role=${query}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
 
   //   console.log(buyers);
@@ -21,7 +24,7 @@ const MyBuyers = () => {
       "Do you want to delete this buyer? N.B: It can to be undone... "
     );
     if (proceed) {
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`https://used-honda-buy-sell-server.vercel.app/users/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

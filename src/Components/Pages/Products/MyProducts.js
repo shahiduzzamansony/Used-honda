@@ -10,18 +10,21 @@ const MyProducts = () => {
   const { data: products = [], refetch } = useQuery({
     queryKey: ["products", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?email=${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/products?email=${user?.email}`
+      ).then((res) => res.json()),
   });
   // console.log(products);
   //   console.log(products);
   const handleAdvertise = (id) => {
     const agree = window.confirm("Do you want to advertise this product?");
     if (agree) {
-      fetch(`http://localhost:5000/products/advertise/${id}`, {
-        method: "PUT",
-      })
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/products/advertise/${id}`,
+        {
+          method: "PUT",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
@@ -37,7 +40,9 @@ const MyProducts = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you really want to delete?");
     if (proceed) {
-      fetch(`http://localhost:5000/products/${id}`, { method: "DELETE" })
+      fetch(`https://used-honda-buy-sell-server.vercel.app/products/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);

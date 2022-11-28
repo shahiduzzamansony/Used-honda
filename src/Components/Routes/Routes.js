@@ -6,6 +6,7 @@ import Main from "../Layout/Main/Main";
 import MyBuyers from "../Pages/Admin/MyBuyers";
 import MySellers from "../Pages/Admin/MySellers";
 import ReportedItems from "../Pages/Admin/ReportedItems";
+import Blog from "../Pages/Blog/Blog";
 import DashboardHome from "../Pages/DashboardHome/DashboardHome";
 import Categories from "../Pages/Home/Categories/Categories";
 import Home from "../Pages/Home/Home";
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         path: "/categories",
         element: <Categories></Categories>,
       },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
+      },
     ],
   },
   {
@@ -66,7 +71,9 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://used-honda-buy-sell-server.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/dashboard/addProduct",

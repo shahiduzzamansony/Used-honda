@@ -6,9 +6,9 @@ const AdvertisedProducts = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["advertisedProducts"],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?isAdvertised=advertised`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/products?isAdvertised=advertised`
+      ).then((res) => res.json()),
   });
   if (isLoading) {
     return <h1>Loading..........</h1>;

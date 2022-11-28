@@ -11,12 +11,12 @@ const MySellers = () => {
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?role=${query}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/users?role=${query}`
+      ).then((res) => res.json()),
   });
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://used-honda-buy-sell-server.vercel.app/users/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -32,9 +32,12 @@ const MySellers = () => {
   };
 
   const handleProductVerify = (email) => {
-    fetch(`http://localhost:5000/products/verify/${email}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://used-honda-buy-sell-server.vercel.app/products/verify/${email}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -52,7 +55,7 @@ const MySellers = () => {
       "Do you want to delete this seler? N.B: It can to be undone... "
     );
     if (proceed) {
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`https://used-honda-buy-sell-server.vercel.app/users/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

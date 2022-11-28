@@ -10,7 +10,9 @@ const useRole = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/users/role/${user?.email}`)
+      fetch(
+        `https://used-honda-buy-sell-server.vercel.app/users/role/${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);

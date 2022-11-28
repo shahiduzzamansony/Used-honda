@@ -7,12 +7,16 @@ const ReportedItems = () => {
   const { data: reportedItems = [], refetch } = useQuery({
     queryKey: ["reportedItems"],
     queryFn: () =>
-      fetch("http://localhost:5000/reported").then((res) => res.json()),
+      fetch("https://used-honda-buy-sell-server.vercel.app/reported").then(
+        (res) => res.json()
+      ),
   });
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you really want to delete?");
     if (proceed) {
-      fetch(`http://localhost:5000/products/${id}`, { method: "DELETE" })
+      fetch(`https://used-honda-buy-sell-server.vercel.app/products/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);

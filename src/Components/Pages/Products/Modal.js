@@ -15,7 +15,7 @@ const Modal = ({ modalProduct, setModalProduct }) => {
     const phoneNumber = form.phoneNumber.value;
     // console.log(meetingLocation, phoneNumber, resalePrice);
 
-    fetch(`http://localhost:5000/products/${_id}`, {
+    fetch(`https://used-honda-buy-sell-server.vercel.app/products/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

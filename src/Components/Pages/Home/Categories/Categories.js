@@ -6,7 +6,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
   const fetchData = () => {
     return axios
-      .get("http://localhost:5000/categories")
+      .get("https://used-honda-buy-sell-server.vercel.app/categories")
       .then((response) => setCategories(response.data));
   };
 

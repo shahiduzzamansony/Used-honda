@@ -23,7 +23,7 @@ const AddProduct = () => {
       originalPrice,
       resalePrice,
     };
-    fetch("http://localhost:5000/products", {
+    fetch("https://used-honda-buy-sell-server.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

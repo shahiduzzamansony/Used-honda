@@ -12,7 +12,7 @@ const Products = () => {
   const navigate = useNavigate;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products?type=${type}`)
+    fetch(`https://used-honda-buy-sell-server.vercel.app/products?type=${type}`)
       .then((res) => res.json())
       .then((data) => setFilterProducts(data))
       .catch((err) => console.error(err));
