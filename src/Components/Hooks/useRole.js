@@ -11,7 +11,12 @@ const useRole = () => {
   useEffect(() => {
     if (user?.email) {
       fetch(
-        `https://used-honda-buy-sell-server.vercel.app/users/role/${user?.email}`
+        `https://used-honda-buy-sell-server.vercel.app/users/role/${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       )
         .then((res) => res.json())
         .then((data) => {
