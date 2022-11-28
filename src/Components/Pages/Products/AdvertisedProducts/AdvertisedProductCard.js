@@ -5,7 +5,7 @@ import useRole from "../../../Hooks/useRole";
 const AdvertisedProductCard = ({ product }) => {
   const { user } = useContext(AuthContext);
   const { name, img, originalPrice, resalePrice, location } = product;
-  const [isSeller] = useRole(user?.email);
+  const [isSeller, isAdmin] = useRole(user?.email);
   return (
     <div>
       <div className="card shadow-xl">
@@ -32,7 +32,7 @@ const AdvertisedProductCard = ({ product }) => {
           </div>
           <div className="card-actions justify-end">
             <label
-              disabled={isSeller}
+              disabled={isSeller || isAdmin}
               //   onClick={() => setModalProduct(product)}
               htmlFor="booknow-modal"
               className="btn btn-accent btn-xs"

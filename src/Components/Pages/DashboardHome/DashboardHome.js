@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useRole from "../../Hooks/useRole";
+import MyBuyers from "../Admin/MyBuyers";
 import MyOrders from "../Orders/MyOrders";
 import MyProducts from "../Products/MyProducts";
 
 const DashboardHome = () => {
   const { loading, user } = useContext(AuthContext);
-  const [isSeller, isBuyer] = useRole(user?.email);
+  const [isSeller, isBuyer, isAdmin] = useRole(user?.email);
 
   if (loading) {
     return (
@@ -23,6 +24,7 @@ const DashboardHome = () => {
     <div>
       {isSeller && <MyProducts></MyProducts>}
       {isBuyer && <MyOrders></MyOrders>}
+      {isAdmin && <MyBuyers></MyBuyers>}
     </div>
   );
 };

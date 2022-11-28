@@ -12,16 +12,23 @@ const MyProductcard = ({ product, handleDelete, handleAdvertise }) => {
           <h2 className="card-title text-white text-2xl">{name}</h2>
           <p className="text-white"> price: {resalePrice} TK</p>
           <p className="text-white">Status: {}</p>
-          <div className="card-actions justify-between">
-            <button
-              // disabled={product.isAdvertised}
-              onClick={() => handleAdvertise(_id)}
-              className="btn btn-accent btn-xs"
-            >
-              {product?.isAdvertised === "advertised"
-                ? "Advertised"
-                : "Advertise"}
-            </button>
+          <div className="card-actions flex-col justify-between">
+            {product?.paid ? (
+              <p className="text-green-500 font-semibold">Sold</p>
+            ) : (
+              <>
+                <p className="text-accent font-semibold">Available</p>
+                <button
+                  disabled={product?.isAdvertised === "advertised"}
+                  onClick={() => handleAdvertise(_id)}
+                  className="btn btn-accent btn-xs"
+                >
+                  {product?.isAdvertised === "advertised"
+                    ? "Advertised"
+                    : "Advertise"}
+                </button>
+              </>
+            )}
             <button
               onClick={() => handleDelete(_id)}
               className="btn btn-accent btn-xs"

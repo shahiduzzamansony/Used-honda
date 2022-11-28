@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { emailSignin, loading } = useContext(AuthContext);
+
+  const [fireError, SetFireError] = useState("");
+  const { emailSignin, loading, googleSignin } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   if (loading) {
     return (
@@ -21,14 +26,53 @@ const Login = () => {
     );
   }
 
+  const handleGoogleIn = () => {
+    googleSignin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        if (user) {
+          const userInfo = {
+            name: user?.displayName,
+            email: user?.email,
+            role: "Buyer",
+          };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                // setCreateUserEmail(user?.email);
+                navigate("/");
+                toast.success("Account Create successfull with save user");
+              } else {
+                // setCreateUserEmail(user?.email);
+                toast.error(data.message);
+                navigate(from, { replace: true });
+              }
+            })
+            .catch((err) => {
+              console.error(err.message);
+            });
+        }
+        //   authJwt(user)
+      })
+      .then((err) => console.error(err));
+  };
+
   const handleLogin = (data) => {
-    console.log(data);
+    // console.log(data);
     emailSignin(data.email, data.password)
       .then((user) => {
         // console.log(user);
         navigate("/");
       })
-      .catch((err) => console.error(err));
+      .catch((err) => SetFireError(err));
   };
   return (
     <div className=" flex justify-center items-center  drop-shadow-lg">
@@ -55,6 +99,7 @@ const Login = () => {
                 type="submit"
               />
             </div>
+            <p className="text-red-600">{fireError}</p>
           </form>
           <p className=" text-center">
             New to the website{" "}
@@ -64,7 +109,7 @@ const Login = () => {
           </p>
           <div className="divider">OR</div>
           <div className="flex justify-center">
-            <button className="btn btn-wide btn-info">
+            <button onClick={handleGoogleIn} className="btn btn-wide btn-info">
               Continue with Google
             </button>
           </div>

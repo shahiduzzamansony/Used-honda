@@ -10,10 +10,27 @@ const MyOrders = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`http://localhost:5000/products?email=${user?.email}`).then((res) =>
-        res.json()
+      fetch(`http://localhost:5000/products?buyerEmail=${user?.email}`).then(
+        (res) => res.json()
       ),
   });
+
+  const handleReport = (order) => {
+    // console.log(id);
+    const reportedProduct = { ...order, productId: order._id };
+    delete reportedProduct._id;
+
+    fetch(`http://localhost:5000/reported`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reportedProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((e) => console.error(e));
+  };
   const handleDelete = (id) => {
     const proceed = window.confirm("Do you really want to delete?");
     if (proceed) {
@@ -22,7 +39,12 @@ const MyOrders = () => {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ email: "" }),
+        body: JSON.stringify({
+          email: "",
+          meetingLocation: "",
+          phoneNumber: "",
+          buyerName: "",
+        }),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -43,6 +65,7 @@ const MyOrders = () => {
             key={order?._id}
             order={order}
             handleDelete={handleDelete}
+            handleReport={handleReport}
           ></MyOrderCard>
         ))
       ) : (

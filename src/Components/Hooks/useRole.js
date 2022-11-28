@@ -1,25 +1,34 @@
-import { isAdmin } from "@firebase/util";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
-const useRole = (email) => {
+const useRole = () => {
+  const { user, loading } = useContext(AuthContext);
+  // const{loading}=use
   const [isAdmin, setIsAdmin] = useState(false);
   const [isBuyer, setIsBuyer] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
+
   useEffect(() => {
-    if (email) {
-      fetch(`http://localhost:5000/users/role/${email}`)
+    if (user?.email) {
+      fetch(`http://localhost:5000/users/role/${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          //   console.log(data);
+          console.log(data);
+          if (loading) {
+            <p>Loading</p>;
+          }
           if (data?.role === "Seller") {
             setIsSeller(true);
           }
           if (data?.role === "Buyer") {
             setIsBuyer(true);
           }
+          if (data?.role === "Admin") {
+            setIsAdmin(true);
+          }
         });
     }
-  }, [email]);
+  }, [user?.email, loading]);
   return [isSeller, isBuyer, isAdmin];
 };
 export default useRole;

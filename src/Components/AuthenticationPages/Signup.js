@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -7,6 +7,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
+  const [fireError, SetFireError] = useState("");
   const { createUser, loading, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
   if (loading) {
@@ -35,7 +36,7 @@ const Signup = () => {
           })
           .catch((e) => console.error(e));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => SetFireError(err));
   };
 
   const saveUser = (name, email, role) => {
@@ -92,6 +93,7 @@ const Signup = () => {
                 value="SIGNUP"
               />
             </div>
+            <p className="text-red-600">{fireError}</p>
           </form>
           <p className=" text-center">
             Already have an account{" "}

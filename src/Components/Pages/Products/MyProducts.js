@@ -17,7 +17,7 @@ const MyProducts = () => {
   // console.log(products);
   //   console.log(products);
   const handleAdvertise = (id) => {
-    const agree = window.confirm("Dou you want to advertise this product?");
+    const agree = window.confirm("Do you want to advertise this product?");
     if (agree) {
       fetch(`http://localhost:5000/products/advertise/${id}`, {
         method: "PUT",

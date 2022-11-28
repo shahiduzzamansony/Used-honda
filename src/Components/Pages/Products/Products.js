@@ -23,13 +23,18 @@ const Products = () => {
   return (
     <div>
       <div className=" m-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
-        {filterProducts.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            setModalProduct={setModalProduct}
-          ></ProductCard>
-        ))}
+        {filterProducts.map(
+          (product) =>
+            // console.log(product)
+            !product?.paid && (
+              <ProductCard
+                key={product._id}
+                email={product.email}
+                product={product}
+                setModalProduct={setModalProduct}
+              ></ProductCard>
+            )
+        )}
       </div>
       {user ? (
         <>

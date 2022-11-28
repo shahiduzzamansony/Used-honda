@@ -4,11 +4,13 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Modal = ({ modalProduct, setModalProduct }) => {
   const { user, loading } = useContext(AuthContext);
-  const { _id, name, resalePrice } = modalProduct;
+  const { _id, name, resalePrice, email } = modalProduct;
   const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
-    const email = user?.email;
+    const email = form.email.value;
+    const buyerEmail = user?.email;
+    const buyerName = form.buyerName.value;
     const meetingLocation = form.meetingLocation.value;
     const phoneNumber = form.phoneNumber.value;
     // console.log(meetingLocation, phoneNumber, resalePrice);
@@ -18,7 +20,13 @@ const Modal = ({ modalProduct, setModalProduct }) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ email, meetingLocation, phoneNumber }),
+      body: JSON.stringify({
+        email,
+        buyerEmail,
+        buyerName,
+        meetingLocation,
+        phoneNumber,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -55,7 +63,8 @@ const Modal = ({ modalProduct, setModalProduct }) => {
               />
               <input
                 className="input w-3/4 input-bordered input-accent input-sm mb-3"
-                value={user.email}
+                value={email}
+                name="email"
                 disabled
               />
               <input

@@ -6,8 +6,7 @@ import useRole from "../../Hooks/useRole";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  const [isSeller, isBuyer] = useRole(user?.email);
-  // console.log(isSeller, isBuyer);
+  const [isSeller, isBuyer, isAdmin] = useRole(user?.email);
 
   return (
     <div>
@@ -26,7 +25,7 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             {isBuyer && (
               <li className="text-xl font-semibold">
-                <Link>My Orders</Link>
+                <Link to="/dashboard/myOrders">My Orders</Link>
               </li>
             )}
             {isSeller && (
@@ -38,6 +37,19 @@ const Dashboard = () => {
                 </li>
                 <li className="text-xl font-semibold">
                   <Link to="/dashboard/addProduct">Add a Product</Link>
+                </li>
+              </>
+            )}
+            {isAdmin && (
+              <>
+                <li className="text-xl font-semibold">
+                  <Link to={`/dashboard/myBuyers`}>My Buyers</Link>
+                </li>
+                <li className="text-xl font-semibold">
+                  <Link to={`/dashboard/mySellers`}>My Sellers</Link>
+                </li>
+                <li className="text-xl font-semibold">
+                  <Link to={`/dashboard/reportedItems`}>Reported Products</Link>
                 </li>
               </>
             )}
