@@ -18,6 +18,8 @@ const MyBuyers = () => {
       ).then((res) => res.json()),
   });
 
+  // repo changed
+
   //   console.log(buyers);
   const handleDelete = (id) => {
     const proceed = window.confirm(
