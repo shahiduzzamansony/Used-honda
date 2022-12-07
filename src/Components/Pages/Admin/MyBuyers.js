@@ -8,17 +8,12 @@ const MyBuyers = () => {
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(
-        `https://used-honda-buy-sell-server.vercel.app/users?role=${query}`,
-        {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      ).then((res) => res.json()),
+      fetch(`https://used-honda-buy-sell-server.vercel.app/users/buyer`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json()),
   });
-
-  // repo changed
 
   //   console.log(buyers);
   const handleDelete = (id) => {
@@ -52,21 +47,22 @@ const MyBuyers = () => {
             </tr>
           </thead>
           <tbody>
-            {buyers?.map((buyer, i) => (
-              <tr key={i}>
-                <th>{i + 1}</th>
-                <td>{buyer.name}</td>
-                <td>{buyer.email}</td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(buyer._id)}
-                    className="btn btn-accent btn-sm"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {buyers &&
+              buyers.map((buyer, i) => (
+                <tr key={i}>
+                  <th>{i + 1}</th>
+                  <td>{buyer.name}</td>
+                  <td>{buyer.email}</td>
+                  <td>
+                    <button
+                      onClick={() => handleDelete(buyer._id)}
+                      className="btn btn-accent btn-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React from "react";
 import toast from "react-hot-toast";
 import { GoVerified } from "react-icons/go";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const MySellers = () => {
-  const { user } = useContext(AuthContext);
-  const query = "Seller";
-
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(
-        `https://used-honda-buy-sell-server.vercel.app/users?role=${query}`
-      ).then((res) => res.json()),
+      fetch(`https://used-honda-buy-sell-server.vercel.app/users/seller`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json()),
   });
+  // console.log(sellers);
   const handleVerify = (id) => {
     fetch(`https://used-honda-buy-sell-server.vercel.app/users/${id}`, {
       method: "PUT",
@@ -32,6 +31,7 @@ const MySellers = () => {
   };
 
   const handleProductVerify = (email) => {
+    console.log(email);
     fetch(
       `https://used-honda-buy-sell-server.vercel.app/products/verify/${email}`,
       {
@@ -41,11 +41,7 @@ const MySellers = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.upsertedCount > 0) {
-          toast.success("Verified Successfully");
-        } else {
-          toast.error("Already verified");
-        }
+
         refetch();
       });
   };

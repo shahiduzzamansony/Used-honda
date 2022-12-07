@@ -8,7 +8,7 @@ const Modal = ({ modalProduct, setModalProduct }) => {
   const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value;
+    // const email = form.email.value;
     const buyerEmail = user?.email;
     const buyerName = form.buyerName.value;
     const meetingLocation = form.meetingLocation.value;
@@ -63,7 +63,7 @@ const Modal = ({ modalProduct, setModalProduct }) => {
               />
               <input
                 className="input w-3/4 input-bordered input-accent input-sm mb-3"
-                value={email}
+                value={user?.email}
                 name="email"
                 disabled
               />

@@ -14,11 +14,10 @@ const MyProducts = () => {
         `https://used-honda-buy-sell-server.vercel.app/products?email=${user?.email}`
       ).then((res) => res.json()),
   });
-  // console.log(products);
-  //   console.log(products);
   const handleAdvertise = (id) => {
     const agree = window.confirm("Do you want to advertise this product?");
     if (agree) {
+      // https://used-honda-buy-sell-server.vercel.app
       fetch(
         `https://used-honda-buy-sell-server.vercel.app/products/advertise/${id}`,
         {

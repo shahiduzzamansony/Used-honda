@@ -1,29 +1,26 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
+import { useEffect, useState } from "react";
+// import { AuthContext } from "../AuthProvider/AuthProvider";
 
-const useRole = () => {
-  const { user, loading } = useContext(AuthContext);
+const useRole = (email) => {
+  // const { user, loading } = useContext(AuthContext);
   // const{loading}=use
   const [isAdmin, setIsAdmin] = useState(false);
   const [isBuyer, setIsBuyer] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
 
   useEffect(() => {
-    if (user?.email) {
+    if (email) {
       fetch(
-        `https://used-honda-buy-sell-server.vercel.app/users/role/${user?.email}`,
-        {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
+        `https://used-honda-buy-sell-server.vercel.app/users/role/${email}`
+        // , {
+        //   headers: {
+        //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        //   },
       )
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
-          if (loading) {
-            <p>Loading</p>;
-          }
+
           if (data?.role === "Seller") {
             setIsSeller(true);
           }
@@ -35,7 +32,7 @@ const useRole = () => {
           }
         });
     }
-  }, [user?.email, loading]);
+  }, [email]);
   return [isSeller, isBuyer, isAdmin];
 };
 export default useRole;

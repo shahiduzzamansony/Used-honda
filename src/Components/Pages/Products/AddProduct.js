@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useSeller from "../../Hooks/useSeller";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
+  const [isVerified] = useSeller(user?.email);
+  console.log(isVerified);
   const addProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -22,6 +25,7 @@ const AddProduct = () => {
       location,
       originalPrice,
       resalePrice,
+      isVerified,
     };
     fetch("https://used-honda-buy-sell-server.vercel.app/products", {
       method: "POST",
