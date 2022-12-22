@@ -1,8 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import ktm from "../../../../assets/ktm.jpg";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import useRole from "../../../Hooks/useRole";
 
 const SellerHero = () => {
+  const { user } = useContext(AuthContext);
+  const [isSeller] = useRole(user?.email);
+  // console.log(isSeller);
+
   return (
     <div>
       <div className="hero lg:h-96" style={{ backgroundImage: `url(${ktm})` }}>
@@ -18,7 +25,11 @@ const SellerHero = () => {
               et a id nisi.
             </p>
             <Link to="/dashboard/addProduct">
-              <button className="btn btn-accent btn-sm">Add Product</button>
+              {
+                <button disabled={!isSeller} className="btn btn-accent btn-sm">
+                  Add Product
+                </button>
+              }
             </Link>
           </div>
         </div>

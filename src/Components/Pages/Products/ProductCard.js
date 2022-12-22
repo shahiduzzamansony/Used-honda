@@ -1,14 +1,15 @@
 import React from "react";
 
-// import useRole from "../../Hooks/useRole";
+import useRole from "../../Hooks/useRole";
 import { GoVerified } from "react-icons/go";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const ProductCard = ({ product, setModalProduct }) => {
+  const { user } = useContext(AuthContext);
   const { name, img, originalPrice, resalePrice, location, isVerified } =
     product;
-  // const [isAdmin, isSeller] = useRole();
-  // console.log(product);
-  // console.log(isAdmin, isSeller);
+  const [isSeller, isBuyer, isAdmin] = useRole(user?.email);
   return (
     <div>
       <div className="card shadow-xl">
@@ -40,7 +41,7 @@ const ProductCard = ({ product, setModalProduct }) => {
           <div className="card-actions justify-end">
             <label
               onClick={() => setModalProduct(product)}
-              // disabled={isAdmin || isSeller}
+              disabled={!isBuyer}
               htmlFor="booknow-modal"
               className="btn btn-accent btn-xs"
             >

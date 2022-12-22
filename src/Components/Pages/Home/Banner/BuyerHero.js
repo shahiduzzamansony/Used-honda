@@ -1,8 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import hayabusa from "../../../../assets/hayabusa.jpg";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import useRole from "../../../Hooks/useRole";
 
 const BuyerHero = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+  const [isSeller, isBuyer, isAdmin] = useRole(user?.email);
+
   return (
     <div>
       <div
@@ -21,7 +28,9 @@ const BuyerHero = () => {
               et a id nisi.
             </p>
             <Link to="/categories">
-              <button className="btn btn-accent btn-sm">Search Here</button>
+              <button disabled={!isBuyer} className="btn btn-accent btn-sm">
+                Search Here
+              </button>
             </Link>
           </div>
         </div>
